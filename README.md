@@ -29,11 +29,7 @@ The ETL_BigData application leverages the following frameworks and tools:
 
 To get started with the application, you need to install the required dependencies listed in `requirements.txt`. Run the following command to install them:
 
-```shell
-pip install -r requirements.txt
-
-
-```shell
+```python
 pip install -r requirements.txt
 ```
 ####  Running the ETL_App

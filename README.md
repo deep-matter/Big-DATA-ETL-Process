@@ -1,39 +1,46 @@
-# elt_bigdata
+# ETL_BigData
 
-web application for ETL processing data and save in database  , insert file (xlxs or csv ) then use functions to clean data other foundation Data mangemnet
+This repository contains a web application for performing ETL (Extract, Transform, Load) processes on data and saving it in a database. It utilizes Flask as a web framework and Elastic Search for logs.
 
-## Create environment project
+#### ETL Process
 
-1. first install virtualenv with command data
+The ETL (Extract, Transform, Load) process is a common data integration process used in data warehousing and analytics. Here's a brief explanation of each step:
 
-pip install virtualenv
+1. Extract:
+   - The extract step involves retrieving data from various sources, such as databases, files, APIs, or web scraping.
+   - In the context of this application, users can insert files in XLSX or CSV format to extract the data.
 
-virtualenv ETL_propject
+2. Transform:
+   - The transform step involves cleaning, validating, and transforming the extracted data into a suitable format for analysis or storage.
+   - This application provides functions for cleaning and managing the data, allowing users to apply transformations to the extracted data.
 
-2. activate the environment
+3. Load:
+   - The load step involves storing the transformed data into a target database or data warehouse for further analysis and reporting.
+   - The application saves the transformed data into a database for future retrieval and analysis.
 
- source env/bin/activate
+#### Frameworks and Tools
 
-## Getting started
-you have to install requirements.txt by following this command
+The ETL_BigData application leverages the following frameworks and tools:
 
+- Flask: Flask is a lightweight and extensible web framework used for developing web applications.
+- Elastic Search: Elastic Search is a distributed, RESTful search and analytics engine capable of handling large amounts of data and providing powerful search capabilities.
+
+#### Getting Started
+
+To get started with the application, you need to install the required dependencies listed in `requirements.txt`. Run the following command to install them:
+
+```shell
 pip install -r requirements.txt
 
-## Run app ETL_propject
-1. Note that all the Schema database are created by running the project directly 
-python app.py
 
-## Add your files
-
-cd existing_repo
-git remote add origin https://gitlab.com/Youness_Elbrag/elt_bigdata.git
-git branch -M main
-git push -uf origin main
-
-## run the whole app 
-chmod +x run.sh
-
-go to terminal 
-
-sh run.sh 
+```shell
+pip install -r requirements.txt
 ```
+####  Running the ETL_App
+
+To run the ETL_App, execute the following command:
+
+```python
+python app.py
+```
+

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='myfont/css/all.min.css')}}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+    <link rel="stylesheet" href="/static/css/normalize.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    <style>
+          h2{text-align: center;}
+      </style>
+        <style type="text/css">
+    h1 {
+        height: 50%;
+        /* The html and body elements cannot have any padding or margin. */
+        margin: 0;
+        font-size: 14px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 20px;
+        margin-bottom: 3px;
+    }
+    .entry-header {
+        text-align: left;
+        margin: 0 auto 50px auto;
+        width: 80%;
+        max-width: 978px;
+        position: relative;
+        z-index: 10001;
+    }
+    #demo-content {
+        padding-top: 5em;
+    }
+    </style>
+    <title>ETL impoter data </title>
+</head>
+
+<body>
+  <header class="entry-header">
+      <h2 class="w3-opacity"> Welcome {{ current_user.username }}! </h2>
+      <a  href="/logout"><button class="w3-button w3-blue">Logout</button></a>
+  </header>
+    <!-- Demo content -->
+    <div id="demo-content">
+
+
+
+        <div id="loader-wrapper">
+            <div id="loader"></div>
+
+            <div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
+
+        </div>
+
+    <div id="content">
+    <div class="col-md-offset-3 col-md-5" style="margin-top:50px">
+        <form action="/home" method="POST" enctype="multipart/form-data">
+            <h3 class="page-header text-primary">Upload Excel File</h3>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category,message in messages %}
+                        <div class="alert alert-{{category}}">{{message}}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+             <div class="form-group">
+                <label>Browse CSV File</label>
+                <input type="file" class="form-control" name="uploadExcel">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Upload Excel File" class="btn btn-primary btn-block">
+            </div>
+        </form>
+    </div>
+    {% if data %}
+        <div class="row">
+        <div class="col-md-offset-3 col-md-5">
+            <h3 class="page-header text-primary "><span class="fa fa-image">  View Excel File</span></h3>
+             <table class="table table-bordered">
+                  <thead>
+                        <tr>
+                        <th>S.No</th>
+                        <th>Excel</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                 {% for res in data %}
+                 {% set i=loop.index %}
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center">{{i}}</td>
+                            <td><a href="{{url_for('home.view_excel',id=res['pid'])}}" class="btn btn-primary btn-block">{{res['exceldata']}}</a></td>
+                            <td><a href="{{url_for('home.delete_record',id=res['pid'])}}" class="btn btn-danger btn-block">Delete</a></td>
+                        </tr>
+                    </tbody>
+            {% endfor %}
+                  </table>
+        </div>
+                <a href="/downlaod"> <button class="btn btn-primary btn-block w3-button w3-green"> download Logs ETL process</button></a>
+    </div>
+    {% endif %}
+</div>
+<!-- <a herf="/download" >download
+</a> -->
+<!-- <a href="/downlaod" download><button class="w3-button w3-blue"> download Logs ETL process</button</a> -->
+</body>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+    <script src="/static/js/main.js"></script>
+
+</html>
+<script>
+    $(document).ready(function(){
+        $(".alert").hide(4000);
+    });
+</script>
